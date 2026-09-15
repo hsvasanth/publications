@@ -83,6 +83,9 @@ def paper_page(p):
         meta("citation_doi", p["doi"]),
         meta("citation_abstract_html_url", url),
         meta("citation_pdf_url", f"{url}{p['pdf']}"),
+        # Scholar accepts semicolon-separated keywords; they help the page rank
+        # for topic queries rather than only for the exact title.
+        meta("citation_keywords", "; ".join(p.get("keywords", []))),
         meta("description", p["abstract"][:300] if p["abstract"] else p["title"]),
     ]
 
@@ -107,6 +110,9 @@ def paper_page(p):
     ]
     if p["abstract"]:
         body.append(f"<p>{E(p['abstract'])}</p>")
+    if p.get("keywords"):
+        body.append(f'<p class="meta"><strong>Keywords:</strong> '
+                    f'{E(", ".join(p["keywords"]))}</p>')
     body.append('<dl class="meta">')
     body += [f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows]
     body.append("</dl>")

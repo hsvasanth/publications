@@ -18,9 +18,11 @@ python3 build.py     # regenerates index.html and papers/<slug>/index.html
 
 The build prints a `TODO` for any paper missing its PDF or abstract.
 
-### Abstracts are deliberately empty
+### Abstracts and keywords
 
-The published PDFs are letter-spaced and extract as garbled text, so nothing was auto-filled rather than risk publishing a mangled abstract under your name. Paste each real abstract into `publications.json` and re-run the build. Until then the pages carry verified bibliographic metadata only — enough for Scholar, but the abstract is what makes a page findable by topic rather than by title.
+All three are verbatim from the published papers, supplied by the author by hand. They were **not** machine-extracted: these PDFs set type in subset fonts with custom encodings, so automated extraction silently drops and mangles words — `scripts/pdftext.py` in the `research-papers` repo documents exactly how. Anything added here later should come from the paper the same way.
+
+Keywords are the papers' own keyword lists, emitted as `citation_keywords`. They matter because they let a page rank for topic queries rather than only for its exact title.
 
 ### DOIs
 
