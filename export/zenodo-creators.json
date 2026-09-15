@@ -1,0 +1,20 @@
+[
+  {
+    "person_or_org": {
+      "type": "personal",
+      "family_name": "Hosahalli Seenappa",
+      "given_name": "Vasantha Kumar",
+      "identifiers": [
+        {
+          "scheme": "orcid",
+          "identifier": "0009-0009-4836-5205"
+        }
+      ]
+    },
+    "affiliations": [
+      {
+        "name": "Yahoo Inc."
+      }
+    ]
+  }
+]
