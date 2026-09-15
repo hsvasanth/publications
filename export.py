@@ -75,9 +75,10 @@ def zenodo(p: dict) -> dict:
         "journal_issue": p["issue"],
         "journal_pages": (f"{p['firstpage']}-{p['lastpage']}" if p["firstpage"] else ""),
         "access_right": "open",
-        # Left unset on purpose. Depositing a publisher PDF under a licence the
-        # journal did not grant is an infringement, not a metadata slip.
-        "license": "REPLACE_ME",
+        # Taken from the journal's own terms, never guessed. A null licence means
+        # the journal publishes none publicly, and that paper must not be
+        # deposited until the terms are confirmed in writing.
+        "license": p.get("license") or "UNCONFIRMED_DO_NOT_DEPOSIT",
         "related_identifiers": [{
             "identifier": f"{DATA['site']['base_url']}/papers/{p['slug']}/",
             "relation": "isIdenticalTo",
@@ -116,8 +117,14 @@ def main() -> int:
             print(f"  {s}")
         print("Mint on Zenodo, then set \"doi\" in publications.json and re-run "
               "this and build.py.")
-    print("\nZenodo licence is REPLACE_ME in every payload -- set it from each "
-          "journal's copyright page before depositing.")
+    unlicensed = [p["slug"] for p in papers if not p.get("license")]
+    if unlicensed:
+        print("\nDO NOT DEPOSIT -- journal states no public licence:")
+        for s in unlicensed:
+            print(f"  {s}")
+    for p in papers:
+        if p.get("license"):
+            print(f"\nlicence {p['license']:<14} {p['slug']}")
     return 0
 
 
