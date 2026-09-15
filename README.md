@@ -28,6 +28,38 @@ Keywords are the papers' own keyword lists, emitted as `citation_keywords`. They
 
 `"doi": null` on all three. None of these papers has a Crossref DOI — checked against the Crossref API by title and by author, no matches. Set the field and rebuild once one exists; the page will emit `citation_doi` and link to `doi.org`.
 
+## Adding the next paper
+
+`publications.json` is the single source of truth. Add one entry, run two scripts, and the site, your BibTeX and your Zenodo payloads all follow from it — they cannot drift apart.
+
+```bash
+# 1. archive the PDF in the private repo (manifest-driven, dry run first)
+cd ~/research/papers
+#    add a line to scripts/manifest.txt, then:
+./scripts/backup-papers.sh                  # review
+./scripts/backup-papers.sh --apply --push
+
+# 2. add the paper to publications.json, copy the PDF in, then:
+cd ~/research/publications
+python3 build.py                            # site pages + citation_* tags
+python3 export.py                           # export/publications.bib + Zenodo payloads
+git add -A && git commit && git push        # Pages redeploys automatically
+```
+
+Then the three things no script can do, because none of them has an API you can drive without a personal token:
+
+| Step | Automatable? | How |
+|---|---|---|
+| Zenodo deposit → DOI | yes, with a token | `export/zenodo-<slug>.json` is a ready API payload; or paste the fields into the web form |
+| ORCID work entry | partly | ORCID → Works → Add → **Import BibTeX** → `export/publications.bib` |
+| Google Scholar entry | **no** | no write API exists; add it by hand |
+
+Finally, put the minted DOI back into `publications.json` and re-run both scripts. The paper page then emits `citation_doi` and links to `doi.org`, which is what lets a citation attach to you by exact match instead of by fuzzy title guessing.
+
+### Transcribe abstracts by hand
+
+Worth repeating because it is the one step that looks automatable and isn't. See the note in `publications.json`.
+
 ## Publishing
 
 GitHub Pages, served from the default branch root:

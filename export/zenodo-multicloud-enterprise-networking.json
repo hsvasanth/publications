@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "upload_type": "publication",
+    "publication_type": "article",
+    "title": "Next-Generation Intelligent Multi-Cloud Enterprise Networking: Integrating Secure Architecture, AI-Optimized Traffic Engineering, and LLM-Driven Autonomous Network Operations",
+    "creators": [
+      {
+        "name": "Hosahalli Seenappa, Vasantha Kumar",
+        "orcid": "0009-0009-4836-5205",
+        "affiliation": "Yahoo Inc."
+      }
+    ],
+    "description": "<p>There has been an increase in the rate of transformation of enterprises digitally and this has resulted in the implementation of multi-cloud environments and allowed organizations to take advantage of the different attributes of Amazon Web Services (AWS), Microsoft Azure and Oracle Cloud Infrastructure (OCI) to develop new, scalable, flexible and resilient ways to services. The growing complexity associated with heterogeneous cloud infrastructures poses multiple challenges with secure inter-cloud connectivity, adequate traffic engineering and autonomous network management. Currently, the majority of approaches to address these challenges do so in a stand-alone manner and produce disjointed security methods, non-optimal traffic optimization and limited operational intelligence. To address these issues, this paper proposes a next-generation intelligent multi-cloud enterprise networking framework that combines secure multi-cloud architecture with AI-optimized traffic engineering and LLM-driven autonomous network operation into one framework. The proposed architecture integrates Zero Trust security principles and AI-based traffic optimization to develop adaptive routing, efficient resource usage and resilient service delivery while using LLMs to automate network configuration, fault finding and remediation of computer systems across distributed cloud environments. By combining these functional components together into one holistic framework, we provide a comprehensive foundation upon which organizations can develop secure, intelligent and self-managing enterprise networks with improved scalability, operational efficiency and adaptability to the future cloud-centric digital infrastructure.</p>",
+    "publication_date": "2025-12-01",
+    "keywords": [
+      "Multi-Cloud Enterprise Networking",
+      "Cloud Security",
+      "Artificial Intelligence (AI)",
+      "Traffic Engineering",
+      "Large Language Models (LLMs)",
+      "Network Automation",
+      "Zero Trust Architecture",
+      "Enterprise Cloud Computing"
+    ],
+    "journal_title": "International Journal of Leading Research Publication",
+    "journal_volume": "6",
+    "journal_issue": "12",
+    "journal_pages": "1-11",
+    "access_right": "open",
+    "license": "REPLACE_ME",
+    "related_identifiers": [
+      {
+        "identifier": "https://hsvasanth.github.io/publications/papers/multicloud-enterprise-networking/",
+        "relation": "isIdenticalTo",
+        "scheme": "url"
+      },
+      {
+        "identifier": "2582-8010",
+        "relation": "isPartOf",
+        "scheme": "issn"
+      }
+    ],
+    "language": "eng"
+  }
+}
