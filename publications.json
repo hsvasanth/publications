@@ -1,0 +1,83 @@
+{
+  "site": {
+    "base_url": "https://hsvasanth.github.io/publications",
+    "title": "Vasantha Kumar Hosahalli Seenappa — Publications"
+  },
+  "author": {
+    "citation_name": "Hosahalli Seenappa, Vasantha Kumar",
+    "display_name": "Vasantha Kumar Hosahalli Seenappa",
+    "given_names": "Vasantha Kumar",
+    "family_name": "Hosahalli Seenappa",
+    "role": "Senior Network Engineer / Architect",
+    "orcid": "0009-0009-4836-5205",
+    "scholar_id": "6Iq8T8YAAAAJ"
+  },
+
+  "_comment_abstract": "abstract is intentionally empty. The published PDFs are letter-spaced and extract as garbage, and a mangled abstract on a public page is worse than none. Paste the real abstract from each paper and re-run build.py.",
+
+  "papers": [
+    {
+      "slug": "ng-irts-iac-framework",
+      "title": "NG-iRTS: A Python and Ansible-Based Infrastructure as Code Framework for Enterprise Network Automation",
+      "journal": "International Journal of Intelligent Systems and Applications in Engineering",
+      "journal_short": "IJISAE",
+      "issn": "2147-6799",
+      "year": "2024",
+      "volume": "12",
+      "issue": "23s",
+      "firstpage": "4486",
+      "lastpage": "4492",
+      "publication_date": "2024/12/25",
+      "dates_note": "Submitted 2024-11-01 · Revised 2024-12-18 · Accepted 2024-12-25",
+      "doi": null,
+      "pdf": "ng-irts-iac-framework.pdf",
+      "abstract": ""
+    },
+    {
+      "slug": "predictive-config-governance",
+      "title": "Predictive Configuration Governance for AI-Assisted Network Automation in Hyperscale MPLS/IP Backbone Networks",
+      "journal": "International Journal of Intelligent Systems and Applications in Engineering",
+      "journal_short": "IJISAE",
+      "issn": "2147-6799",
+      "year": "2025",
+      "volume": "13",
+      "issue": "2s",
+      "firstpage": "352",
+      "lastpage": "358",
+      "publication_date": "2025/12/25",
+      "dates_note": "Submitted 2025-11-01 · Revised 2025-12-18 · Accepted 2025-12-25",
+      "doi": null,
+      "pdf": "predictive-config-governance.pdf",
+      "abstract": ""
+    },
+    {
+      "slug": "multicloud-enterprise-networking",
+      "title": "Next-Generation Intelligent Multi-Cloud Enterprise Networking: Integrating Secure Architecture, AI-Optimized Traffic Engineering, and LLM-Driven Autonomous Network Operations",
+      "journal": "International Journal of Leading Research Publication",
+      "journal_short": "IJLRP",
+      "issn": "2582-8010",
+      "year": "2026",
+      "volume": "",
+      "issue": "",
+      "firstpage": "",
+      "lastpage": "",
+      "publication_date": "2026",
+      "dates_note": "Verify volume, issue and page range against the published version.",
+      "doi": null,
+      "pdf": "multicloud-enterprise-networking.pdf",
+      "abstract": ""
+    }
+  ],
+
+  "other_work": [
+    {
+      "kind": "UK Registered Design",
+      "number": "6538224",
+      "title": "Machine Learning Based Computer Device for Cloud Computing Security",
+      "registered": "2026-07-09",
+      "granted": "2026-07-30",
+      "classification": "Locarno class 14, subclass 02",
+      "note": "A registered design under the Registered Designs Act 1949. Not a patent."
+    }
+  ]
+}
