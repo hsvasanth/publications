@@ -50,7 +50,7 @@ Then the three things no script can do, because none of them has an API you can 
 
 | Step | Automatable? | How |
 |---|---|---|
-| Zenodo deposit → DOI | yes, with a token | `export/zenodo-<slug>.json` is a ready API payload; or paste the fields into the web form |
+| Zenodo deposit → DOI | **yes, scripted** | `python3 zenodo_deposit.py <slug> --publish` |
 | ORCID work entry | partly | ORCID → Works → Add → **Import BibTeX** → `export/publications.bib` |
 | Google Scholar entry | **no** | no write API exists; add it by hand |
 
@@ -59,6 +59,8 @@ Finally, put the minted DOI back into `publications.json` and re-run both script
 ### Transcribe abstracts by hand
 
 Worth repeating because it is the one step that looks automatable and isn't. See the note in `publications.json`.
+
+See [WORKFLOW.md](WORKFLOW.md) for the full process, including the mistakes the web forms invite and how each was caught.
 
 ## Publishing
 
