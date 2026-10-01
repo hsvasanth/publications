@@ -80,7 +80,7 @@
       "lastpage": "11",
       "publication_date": "2025/12",
       "dates_note": "Article ID IJLRP25122374. Footer reads \"Volume 6, Issue 12, December 2025\" and runs 1 to 11, so IJLRP paginates per article. IJLRP holds Crossref prefix 10.70528 and registers DOIs as 10.70528/ijlrp.v{vol}.i{issue}.{article} -- but never registered one for this paper.",
-      "doi": null,
+      "doi": "10.5281/zenodo.23087463",
       "pdf": "multicloud-enterprise-networking.pdf",
       "keywords": [
         "Multi-Cloud Enterprise Networking",
