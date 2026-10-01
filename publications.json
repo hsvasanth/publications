@@ -79,7 +79,7 @@
       "firstpage": "1",
       "lastpage": "11",
       "publication_date": "2025/12",
-      "dates_note": "Article ID IJLRP25122374. The page footer reads \"Volume 6, Issue 12, December 2025\" and runs 1 to 11, so IJLRP paginates per article rather than continuously across an issue.",
+      "dates_note": "Article ID IJLRP25122374. Footer reads \"Volume 6, Issue 12, December 2025\" and runs 1 to 11, so IJLRP paginates per article. IJLRP holds Crossref prefix 10.70528 and registers DOIs as 10.70528/ijlrp.v{vol}.i{issue}.{article} -- but never registered one for this paper.",
       "doi": null,
       "pdf": "multicloud-enterprise-networking.pdf",
       "keywords": [
@@ -95,7 +95,7 @@
       "abstract": "There has been an increase in the rate of transformation of enterprises digitally and this has resulted in the implementation of multi-cloud environments and allowed organizations to take advantage of the different attributes of Amazon Web Services (AWS), Microsoft Azure and Oracle Cloud Infrastructure (OCI) to develop new, scalable, flexible and resilient ways to services. The growing complexity associated with heterogeneous cloud infrastructures poses multiple challenges with secure inter-cloud connectivity, adequate traffic engineering and autonomous network management. Currently, the majority of approaches to address these challenges do so in a stand-alone manner and produce disjointed security methods, non-optimal traffic optimization and limited operational intelligence. To address these issues, this paper proposes a next-generation intelligent multi-cloud enterprise networking framework that combines secure multi-cloud architecture with AI-optimized traffic engineering and LLM-driven autonomous network operation into one framework. The proposed architecture integrates Zero Trust security principles and AI-based traffic optimization to develop adaptive routing, efficient resource usage and resilient service delivery while using LLMs to automate network configuration, fault finding and remediation of computer systems across distributed cloud environments. By combining these functional components together into one holistic framework, we provide a comprehensive foundation upon which organizations can develop secure, intelligent and self-managing enterprise networks with improved scalability, operational efficiency and adaptability to the future cloud-centric digital infrastructure.",
       "issue_date": "2025-12-01",
       "bibtex_key": "hosahalliseenappa2025multicloud",
-      "license": null
+      "license": "cc-by-sa-4.0"
     }
   ],
   "other_work": [
@@ -110,5 +110,5 @@
     }
   ],
   "_comment_issue_date": "issue_date is the date printed on the issue, needed because Zenodo requires a full ISO date. For the two IJISAE papers this is the per-issue accepted date, not a review milestone for the individual paper -- see the note in the research-papers README.",
-  "_comment_license": "Zenodo licence id per paper, from the journal's own terms. IJISAE: copyright transfers to the journal on acceptance but articles are published under Creative Commons Attribution-ShareAlike 4.0, so redistribution is permitted and must stay under the SAME licence -- cc-by-sa-4.0, NOT cc-by-4.0. Relicensing ShareAlike content as plain CC-BY breaks the licence. IJLRP states no licence anywhere public, so it is left null: do not deposit that PDF until the terms are confirmed in writing."
+  "_comment_license": "Zenodo licence id per paper, from each journal's own terms. IJISAE: copyright transfers on acceptance but articles publish under Creative Commons Attribution-ShareAlike 4.0. IJLRP, publication-guidelines.php: \"All research papers published on this website are licensed under Creative Commons Attribution-ShareAlike 4.0 International License, and all rights belong to their respective authors/researchers.\" Both are cc-by-sa-4.0, NOT cc-by-4.0: ShareAlike must be carried forward, and relicensing it away is not the author's to do."
 }
