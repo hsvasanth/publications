@@ -57,6 +57,22 @@ cd ~/research/papers
 Everything else — including the related-work link back to this site, which is
 how Scholar finds you — is set by the API deposit automatically.
 
+## Checking it later
+
+```bash
+python3 audit.py            # report
+python3 audit.py --strict   # exit 1 on any problem
+```
+
+Compares `publications.json`, Zenodo and ORCID and names anything that has
+drifted. Read-only. Worth running after any manual edit in a web form, since
+that is where every error so far has come from.
+
+Things it has caught: a paper carrying another paper's DOI, which made ORCID
+merge two works into one and hide a publication entirely; keywords silently
+dropped because Zenodo's tag field needs Enter after each one; a DOI stored as
+a full URL instead of a bare identifier.
+
 ## Transcribe the abstract by hand
 
 The one step that looks automatable and isn't. These PDFs use subset fonts with custom encodings; automated extraction silently drops words. On NG-iRTS it lost the clause naming what the framework actually combines — the substance of the contribution. `scripts/pdftext.py` in the `research-papers` repo documents this and is good enough for checking metadata, not for quoting.
