@@ -59,6 +59,11 @@ def main():
     slug = ask("Slug (folder name)", slugify(title))
     if any(p["slug"] == slug for p in d["papers"]):
         sys.exit(f"slug {slug!r} already exists in publications.json")
+    # This repo is public and the script can push. A rehearsal must not be
+    # able to publish a fake paper -- which is exactly what happened the first
+    # time this script was tested.
+    if slug.startswith("zz-test"):
+        sys.exit("slugs starting with 'zz-test' are refused. To rehearse, use any\nreal slug and answer no at the push prompt, then: git reset --hard HEAD~1")
 
     journal = ask("Journal (full name)")
     short = ask("Journal abbreviation", "".join(w[0] for w in journal.split() if w[0].isupper()))
@@ -145,14 +150,20 @@ def main():
     run("git", "add", "-A")
     subprocess.run(["git", "commit", "-q", "-m", f"Add {slug}" + (f" ({doi})" if doi else "")],
                    cwd=ROOT)
-    pushed = subprocess.run(["git", "push", "-q", "origin", "main"], cwd=ROOT).returncode == 0
-    print(f"  committed{' and pushed' if pushed else ' (push failed — push manually)'}")
+    # Pushing publishes to a public site, so it is opt-in rather than automatic.
+    pushed = False
+    if ask("\n  Push to the public site now? (yes/no)", "no") == "yes":
+        pushed = subprocess.run(["git", "push", "-q", "origin", "main"],
+                                cwd=ROOT).returncode == 0
+        print("  pushed" if pushed else "  push FAILED — push manually")
+    else:
+        print("  committed locally; push with: git push origin main")
 
     url = f"{d['site']['base_url']}/papers/{slug}/"
     print(f"""
 ──────────────────────────────────────────────────────────────────────
- Done automatically: site page, citation_* tags, BibTeX, Zenodo{' + DOI' if doi else ''},
- commit{' and push' if pushed else ''}.
+ Done: site page, citation_* tags, BibTeX{', Zenodo DOI ' + doi if doi else ''},
+ local commit{', pushed' if pushed else ' (NOT pushed)'}.
 
  LEFT FOR YOU — these three have no API you can drive:
 

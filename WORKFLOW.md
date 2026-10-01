@@ -14,32 +14,48 @@ Written after doing it three times by hand and getting something wrong every tim
 
 ## The sequence
 
+One command. It asks for the paper's details and does everything that does not
+need a browser.
+
 ```bash
-# 1. archive the PDF privately
-cd ~/research/papers
-#    add a line to scripts/manifest.txt
-./scripts/backup-papers.sh                    # dry run, review
-./scripts/backup-papers.sh --apply --push
-
-# 2. add the paper to publications.json, copy the PDF into papers/<slug>/
 cd ~/research/publications
-python3 build.py                              # site + citation_* tags
-python3 export.py                             # BibTeX + Zenodo payloads
-
-# 3. mint the DOI
-export ZENODO_TOKEN=...                       # zenodo.org/account/settings/applications
-python3 zenodo_deposit.py <slug>              # draft — review in browser
-python3 zenodo_deposit.py <slug> --publish    # mints the DOI
-
-# 4. put the DOI back in publications.json, then
-python3 build.py && python3 export.py
-git add -A && git commit && git push
-
-# 5. verify the record actually matches what you sent
-python3 zenodo_deposit.py <slug> --verify <record_id>
+export ZENODO_TOKEN=...        # zenodo.org/account/settings/applications
+                               # scopes: deposit:write deposit:actions
+python3 newpaper.py
 ```
 
-Then two manual steps: import `export/publications.bib` into ORCID, and add the paper to Google Scholar by hand.
+It will:
+
+1. write the entry into `publications.json`
+2. copy the PDF into `papers/<slug>/`
+3. run `build.py` — site page with the full `citation_*` tag set
+4. run `export.py` — BibTeX for ORCID, Zenodo payload, creators file
+5. offer to deposit on Zenodo and mint the DOI
+6. write the DOI back, rebuild, commit
+7. print the three steps that need a browser, with the values to paste
+
+Two confirmations are required and both default to **no**: minting the DOI
+(irreversible — it freezes the file) and pushing (this repo is public).
+
+Then separately, archive the PDF in the private repo:
+
+```bash
+cd ~/research/papers
+#   add a line to scripts/manifest.txt
+./scripts/backup-papers.sh                  # dry run, review
+./scripts/backup-papers.sh --apply --push
+```
+
+### What still needs a browser, and why
+
+| Step | Why not scripted |
+|---|---|
+| ORCID | writes need an OAuth token; BibTeX import is one action |
+| Google Scholar | no write API exists at all, and no DOI field |
+| Zenodo ISSN | not a field in the deposition API |
+
+Everything else — including the related-work link back to this site, which is
+how Scholar finds you — is set by the API deposit automatically.
 
 ## Transcribe the abstract by hand
 
