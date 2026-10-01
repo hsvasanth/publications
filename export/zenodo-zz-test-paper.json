@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "upload_type": "publication",
+    "publication_type": "article",
+    "title": "TEST Paper Please Ignore",
+    "creators": [
+      {
+        "name": "Hosahalli Seenappa, Vasantha Kumar",
+        "orcid": "0009-0009-4836-5205",
+        "affiliation": "Yahoo Inc."
+      }
+    ],
+    "description": "<p>A short test abstract.</p>",
+    "publication_date": "2026-01-15",
+    "keywords": [
+      "Testing"
+    ],
+    "journal_title": "Journal of Testing",
+    "journal_volume": "1",
+    "journal_issue": "2",
+    "journal_pages": "10-20",
+    "access_right": "open",
+    "license": "cc-by-sa-4.0",
+    "related_identifiers": [
+      {
+        "identifier": "https://hsvasanth.github.io/publications/papers/zz-test-paper/",
+        "relation": "isIdenticalTo",
+        "scheme": "url"
+      },
+      {
+        "identifier": "1234-5678",
+        "relation": "isPartOf",
+        "scheme": "issn"
+      }
+    ],
+    "language": "eng"
+  }
+}

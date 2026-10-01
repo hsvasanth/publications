@@ -96,6 +96,29 @@
       "issue_date": "2025-12-01",
       "bibtex_key": "hosahalliseenappa2025multicloud",
       "license": "cc-by-sa-4.0"
+    },
+    {
+      "slug": "zz-test-paper",
+      "title": "TEST Paper Please Ignore",
+      "journal": "Journal of Testing",
+      "journal_short": "JOT",
+      "issn": "1234-5678",
+      "year": "2026",
+      "volume": "1",
+      "issue": "2",
+      "firstpage": "10",
+      "lastpage": "20",
+      "publication_date": "2026",
+      "issue_date": "2026-01-15",
+      "dates_note": "",
+      "doi": null,
+      "pdf": "zz-test-paper.pdf",
+      "license": "cc-by-sa-4.0",
+      "bibtex_key": "hosahalliseenappa2026zz",
+      "keywords": [
+        "Testing"
+      ],
+      "abstract": "A short test abstract."
     }
   ],
   "other_work": [
