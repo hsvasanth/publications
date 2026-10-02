@@ -23,6 +23,9 @@ ROOT = pathlib.Path(__file__).parent
 ORCID = "0009-0009-4836-5205"
 
 
+INVENIO = "application/vnd.inveniordm.v1+json"
+
+
 def get(url, headers=None):
     req = urllib.request.Request(url, headers=headers or {})
     try:
@@ -56,7 +59,7 @@ def main():
             problems.append(f"ORCID has merged >1 work into one group: {t[:60]} "
                             f"-- almost always two papers sharing a DOI")
 
-    print(f"{'paper':<34}{'zenodo':<9}{'orcid':<8}{'issn':<9}{'keywords':<10}{'site link'}")
+    print(f"{'paper':<34}{'zenodo':<9}{'orcid':<8}{'issn':<10}{'keywords':<10}{'site link'}")
     for p in data["papers"]:
         doi = p.get("doi") or ""
         name = p["slug"][:33]
@@ -64,14 +67,21 @@ def main():
             print(f"{name:<34}{'no DOI':<9}{'-':<8}{'-':<9}{'-':<10}-")
             problems.append(f"{p['slug']}: no DOI recorded")
             continue
-        rec = get(f"https://zenodo.org/api/records/{doi.rsplit('.', 1)[-1]}")
+        # Zenodo's default serialisation is the legacy one, which drops the
+        # journal ISSN entirely and reports keywords under a different key.
+        # Reading it made correctly-filled records look empty -- ask for the
+        # InvenioRDM representation instead.
+        rec = get(f"https://zenodo.org/api/records/{doi.rsplit('.', 1)[-1]}",
+                  {"Accept": INVENIO})
         m = rec.get("metadata", {})
-        j = m.get("journal") or {}
-        nkw, want = len(m.get("keywords") or []), len(p.get("keywords") or [])
-        ok_z, ok_o = rec.get("doi") == doi, doi in odois
+        j = (rec.get("custom_fields") or {}).get("journal:journal") or {}
+        kws = [x.get("subject") for x in (m.get("subjects") or [])]
+        nkw, want = len(kws), len(p.get("keywords") or [])
+        ok_z = (rec.get("pids", {}).get("doi") or {}).get("identifier") == doi
+        ok_o = doi in odois
         issn, links = j.get("issn"), len(m.get("related_identifiers") or [])
         print(f"{name:<34}{'ok' if ok_z else 'MISMATCH':<9}{'ok' if ok_o else 'MISSING':<8}"
-              f"{(issn or 'blank'):<9}{f'{nkw}/{want}':<10}{links}")
+              f"{(issn or 'blank'):<10}{f'{nkw}/{want}':<10}{links}")
         if not ok_z:
             problems.append(f"{p['slug']}: Zenodo record does not report this DOI")
         if not ok_o:
@@ -80,8 +90,10 @@ def main():
             problems.append(f"{p['slug']}: Zenodo ISSN blank (set it in the web UI; "
                             f"the deposition API has no field for it)")
         if nkw != want:
-            problems.append(f"{p['slug']}: Zenodo has {nkw} keywords, expected {want} "
-                            f"(the form needs Enter after each tag)")
+            extra = [k for k in kws if k not in (p.get("keywords") or [])]
+            detail = f"; unexpected: {extra}" if extra else ""
+            problems.append(f"{p['slug']}: Zenodo has {nkw} keywords, expected {want}"
+                            f"{detail}")
         if not links:
             problems.append(f"{p['slug']}: no related-work link back to the site -- "
                             f"this is the path Scholar follows to find you")
