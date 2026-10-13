@@ -110,5 +110,15 @@
     }
   ],
   "_comment_issue_date": "issue_date is the date printed on the issue, needed because Zenodo requires a full ISO date. For the two IJISAE papers this is the per-issue accepted date, not a review milestone for the individual paper -- see the note in the research-papers README.",
-  "_comment_license": "Zenodo licence id per paper, from each journal's own terms. IJISAE: copyright transfers on acceptance but articles publish under Creative Commons Attribution-ShareAlike 4.0. IJLRP, publication-guidelines.php: \"All research papers published on this website are licensed under Creative Commons Attribution-ShareAlike 4.0 International License, and all rights belong to their respective authors/researchers.\" Both are cc-by-sa-4.0, NOT cc-by-4.0: ShareAlike must be carried forward, and relicensing it away is not the author's to do."
+  "_comment_license": "Zenodo licence id per paper, from each journal's own terms. IJISAE: copyright transfers on acceptance but articles publish under Creative Commons Attribution-ShareAlike 4.0. IJLRP, publication-guidelines.php: \"All research papers published on this website are licensed under Creative Commons Attribution-ShareAlike 4.0 International License, and all rights belong to their respective authors/researchers.\" Both are cc-by-sa-4.0, NOT cc-by-4.0: ShareAlike must be carried forward, and relicensing it away is not the author's to do.",
+  "talks": [
+    {
+      "title": "When AI Takes Control of the Cloud",
+      "event": "TEDxCNS Pune Youth",
+      "date": "2026-10-12",
+      "video": "https://www.youtube.com/watch?v=r_kycBBNjmk",
+      "event_url": "https://www.ted.com/tedx/events/70319",
+      "note": "Published on TED's own TEDx Talks channel. TEDx events are independently licensed and are not TED."
+    }
+  ]
 }

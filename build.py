@@ -142,6 +142,13 @@ def index_page(papers, other):
             f'<a href="papers/{E(p["slug"])}/">{E(p["title"])}</a></div>'
             f'<div class="venue">{venue}</div></article>'
         )
+    for t in DATA.get("talks", []):
+        body.append("<h2>Talks</h2>")
+        body.append(
+            f'<article><div class="title">'
+            f'<a href="{E(t["video"])}">{E(t["title"])}</a></div>'
+            f'<div class="venue"><a href="{E(t["event_url"])}">{E(t["event"])}</a>'
+            f' · {E(t["date"])}</div></article>')
     if other:
         body.append("<h2>Registered designs</h2>")
         for o in other:
