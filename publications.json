@@ -115,10 +115,12 @@
     {
       "title": "When AI Takes Control of the Cloud",
       "event": "TEDxCNS Pune Youth",
-      "date": "2026-10-12",
+      "date": "2026-09-08",
+      "venue": "Chatrabhuj Narsee School, Pune",
       "video": "https://www.youtube.com/watch?v=r_kycBBNjmk",
       "event_url": "https://www.ted.com/tedx/events/70319",
-      "note": "Published on TED's own TEDx Talks channel. TEDx events are independently licensed and are not TED."
+      "certificate": "talks/tedx-cns-pune-youth/certificate-of-appreciation.pdf",
+      "note": "Delivered 2026-09-08; published on TED's own TEDx Talks channel 2026-10-12. TEDx events are independently licensed and are not TED."
     }
   ]
 }
