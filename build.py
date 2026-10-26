@@ -37,6 +37,7 @@ a { color: #0b5fff; text-decoration-thickness: 1px; text-underline-offset: 2px; 
 @media (prefers-color-scheme: dark) { a { color: #6ea8ff; } }
 .sub { opacity: .7; margin: 0 0 1.5rem; }
 .ids { font-size: .9rem; opacity: .75; }
+.about { margin: 1.25rem 0 0; max-width: 40rem; }
 article { padding: 1.1rem 0; border-top: 1px solid rgba(128,128,128,.25); }
 article .title { font-weight: 600; }
 article .venue { font-size: .92rem; opacity: .75; margin-top: .2rem; }
@@ -63,7 +64,7 @@ def head(title, tags=()):
         '    <meta name="viewport" content="width=device-width, initial-scale=1">',
         f"    <title>{E(title)}</title>",
     ]
-    lines += [t for t in tags if t]
+    lines += [t for t in tags if t]   # meta() yields None when content is empty
     lines += [f"    <style>{CSS}</style>", "</head>", "<body>"]
     return "\n".join(lines)
 
@@ -121,15 +122,54 @@ def paper_page(p):
     return "\n".join(body)
 
 
+def person_jsonld(papers, other):
+    """schema.org Person with sameAs links.
+
+    The citation_* tags tell a crawler about each paper. Nothing on the site
+    told a crawler that the ORCID, the Scholar profile and the DOIs all belong
+    to one person -- which is the same identity-matching problem, one level up.
+    """
+    same = [f"https://orcid.org/{AUTHOR['orcid']}",
+            f"https://scholar.google.com/citations?user={AUTHOR['scholar_id']}"]
+    same += [f"https://doi.org/{p['doi']}" for p in papers if p.get("doi")]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": AUTHOR["display_name"],
+        "givenName": AUTHOR["given_names"],
+        "familyName": AUTHOR["family_name"],
+        "jobTitle": AUTHOR["role"],
+        "url": BASE,
+        "identifier": f"https://orcid.org/{AUTHOR['orcid']}",
+        "sameAs": same,
+    }
+    if AUTHOR.get("about"):
+        data["description"] = AUTHOR["about"]
+    return ('<script type="application/ld+json">'
+            + json.dumps(data, ensure_ascii=False) + "</script>")
+
+
 def index_page(papers, other):
     body = [
-        head(SITE["title"], [meta("description", f"Publications of {AUTHOR['display_name']}.")]),
+        head(SITE["title"], [
+            meta("description", AUTHOR.get("about") or
+                 f"Publications of {AUTHOR['display_name']}."),
+            # Open Graph: the site gets shared on LinkedIn, where a bare URL
+            # renders as a bare URL.
+            meta("og:type", "profile"),
+            meta("og:title", AUTHOR["display_name"]),
+            meta("og:description", AUTHOR.get("about", "")),
+            meta("og:url", BASE),
+            person_jsonld(papers, other),
+        ]),
         f"<h1>{E(AUTHOR['display_name'])}</h1>",
         f'<p class="sub">{E(AUTHOR["role"])}</p>',
         '<p class="ids">'
         f'ORCID <a href="https://orcid.org/{E(AUTHOR["orcid"])}">{E(AUTHOR["orcid"])}</a>'
         f' · <a href="https://scholar.google.com/citations?user={E(AUTHOR["scholar_id"])}">Google Scholar</a>'
-        "</p>",
+        + "".join(f' · {E(c["label"])}' for c in AUTHOR.get("credentials", []))
+        + "</p>",
+        (f'<p class="about">{E(AUTHOR["about"])}</p>' if AUTHOR.get("about") else ""),
         "<h2>Peer-reviewed publications</h2>",
     ]
     for p in papers:
